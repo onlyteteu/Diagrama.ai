@@ -108,7 +108,7 @@ export default function Home() {
               svg { background-color: #0B0E14; }
           </style>`;
 
-          const styledSvg = svg.replace('>', \`>\${customStyle}\`);
+          const styledSvg = svg.replace('>', `>${customStyle}`);
 
           const blob = new Blob([styledSvg], { type: 'image/svg+xml' });
           const url = URL.createObjectURL(blob);
