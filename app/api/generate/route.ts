@@ -18,17 +18,17 @@ export async function POST(req: Request) {
     }
 
     const prompt = `
-Você é um especialista em Processos de Negócio. Sua tarefa é criar um diagrama XML BPMN 2.0 (SEM MARCAÇÕES VISUAIS/DIAGRAMA). Apenas a semântica: <bpmn:definitions>, <bpmn:process>, <bpmn:startEvent>, <bpmn:task>, <bpmn:sequenceFlow>.
+Você é uma Inteligência Artificial especialista em BPMN 2.0. Sua única tarefa é ler o texto do usuário e traduzi-lo em puro código semântico XML BPMN.
+É CRÍTICO QUE TODAS AS TAREFAS ESTEJAM INTERLIGADAS! Se não houver tags <bpmn:sequenceFlow> ligando as caixas entre si, o motor falhará.
 
 DESCRIÇÃO DO USUÁRIO: ${userPrompt}
 
-Regras ABSOLUTAS:
-0. Identifique silenciosamente o Processo/Título e os Atores com base no texto acima antes de construir.
-1. Comece exatamente com <?xml e termine em </bpmn:definitions>. Não use markdown (ex: \`\`\`xml).
-2. Não gere nenhuma tag <bpmndi:BPMNDiagram> ou posições matemáticas x/y! Quero APENAS o lógico. Apenas o <bpmn:process> com os fluxos fechados de ida e volta.
-3. Se o processo acabar, use sempre um <bpmn:endEvent>. 
-4. NOME DAS TAREFAS CURTOS E DIRETOS: Este é o maior segredo para o gráfico ficar bonito. Use no máximo 4 palavras. (Ex: Ao invés de "O Setor de Recursos Humanos avalia a pessoa", use "Avaliar Candidato"). Nomes grandes "bagunçam" as caixas, resuma as ações rigidamente.
-5. Atribua 'id' e 'name' para todas as tarefas. Assuma apenas 1 Process, sem colaborações complexas.
+Regras ABSOLUTAS E FATAIS:
+1. Comece o texto exatamente com <?xml ... e termine com </bpmn:definitions>.
+2. NÃO gere nenhuma tag de coordenadas virtuais como <bpmndi:BPMNDiagram>! Gere APENAS a lógica e a semântica de <bpmn:process>.
+3. OBRIGATÓRIO: CADA CAIXA (Task) E EVENTO (Start/End/Gateway) DEVE ESTAR CONECTADO! Você deve OBRIGATORIAMENTE criar as tags de conexão no fim do arquivo: <bpmn:sequenceFlow id="..." sourceRef="NÓ_ORIGEM" targetRef="NÓ_DESTINO" />. Nunca deixe uma caixa flutuando sozinha sem um Flow de entrada e saída!
+4. NOME DAS TAREFAS: Use NO MÁXIMO 4 palavras curtas. (Ex: Use "Aprovar Transação", jamais "Aprovar a transação após o pedido do cliente"). Nomes compridos rasgam os cantos do SVG no monitor.
+5. Crie IDs simples e claros (ex: id="Gateway_Pagamento"). Use <bpmn:exclusiveGateway> se houver decisões! 
 `;
 
     const modelsRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
