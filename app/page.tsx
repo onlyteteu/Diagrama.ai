@@ -211,15 +211,6 @@ export default function Home() {
           </button>
         </form>
 
-        <div className="sidebar-footer" style={{ marginTop: 'auto', paddingTop: '32px' }}>
-          <div className="info-card" style={{ background: 'rgba(99,102,241,0.05)', border: '1px solid rgba(99,102,241,0.1)', padding: '16px', borderRadius: '12px', fontSize: '13px', color: '#94a3b8', lineHeight: '1.5' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', color: '#F8FAFC', fontWeight: 600 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-              Foco no que importa
-            </div>
-            Esqueça as horas dolorosas perdidas arrastando setas e alinhando painéis matematicamente. Descreva a regra de negócios da sua empresa em linguagem humana, e o Diagrama.ai desenha as engrenagens lógicas para você.
-          </div>
-        </div>
       </aside>
 
       <main className="canvas-container">
