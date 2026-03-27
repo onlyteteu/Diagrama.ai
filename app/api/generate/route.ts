@@ -27,7 +27,7 @@ Regras ABSOLUTAS E FATAIS:
 1. Comece o texto exatamente com <?xml ... e termine com </bpmn:definitions>.
 2. NÃO gere nenhuma tag de coordenadas virtuais como <bpmndi:BPMNDiagram>! Gere APENAS a lógica e a semântica de <bpmn:process>.
 3. OBRIGATÓRIO: CADA CAIXA (Task) E EVENTO (Start/End/Gateway) DEVE ESTAR CONECTADO! Você deve OBRIGATORIAMENTE criar as tags de conexão no fim do arquivo: <bpmn:sequenceFlow id="..." sourceRef="NÓ_ORIGEM" targetRef="NÓ_DESTINO" />. Nunca deixe uma caixa flutuando sozinha sem um Flow de entrada e saída!
-4. NOME DAS TAREFAS: Use NO MÁXIMO 4 palavras curtas. (Ex: Use "Aprovar Transação", jamais "Aprovar a transação após o pedido do cliente"). Nomes compridos rasgam os cantos do SVG no monitor.
+4. PADRÃO DO NOME DAS TAREFAS (ATORES): Para separar visualmente "Quem" faz "O Que", você deve OBRIGATORIAMENTE prefixar o nome da tarefa com o Setor/Pessoa responsável entre colchetes. Exemplo: "[RH] Avaliar Currículo", "[Cliente] Pagar Boleto", "[Sistema] Gerar Nota". Use no máximo 4 a 5 palavras no total!
 5. Crie IDs simples e claros (ex: id="Gateway_Pagamento"). Use <bpmn:exclusiveGateway> se houver decisões! 
 `;
 
