@@ -109,6 +109,54 @@ export default function Home() {
       }
   };
 
+  const handleExportPDF = async () => {
+      try {
+          const { jsPDF } = await import('jspdf');
+          const html2canvas = (await import('html2canvas')).default;
+          
+          const canvasEl = document.querySelector('.bjs-container') as HTMLElement;
+          if (!canvasEl) throw new Error('Container');
+
+          showToast('Capturando layout HD para Fotografia...', 'info');
+          viewerRef.current?.get('canvas').zoom('fit-viewport', 'auto');
+          await new Promise(r => setTimeout(r, 600));
+
+          const canvas = await html2canvas(canvasEl, {
+              backgroundColor: '#0B0E14',
+              scale: 2,
+              logging: false,
+          });
+
+          const imgData = canvas.toDataURL('image/jpeg', 1.0);
+          const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgRatio = canvas.width / canvas.height;
+          const pdfRatio = pdfWidth / pdfHeight;
+          
+          let renderW = pdfWidth;
+          let renderH = pdfWidth / imgRatio;
+          if (imgRatio < pdfRatio) {
+              renderH = pdfHeight;
+              renderW = pdfHeight * imgRatio;
+          }
+          
+          const x = (pdfWidth - renderW) / 2;
+          const y = (pdfHeight - renderH) / 2;
+
+          pdf.setFillColor('#0B0E14');
+          pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
+
+          pdf.addImage(imgData, 'JPEG', x, y, renderW, renderH);
+          pdf.save('diagrama-premium.pdf');
+
+          showToast('PDF Premium gerado com sucesso!', 'success');
+      } catch (err) {
+          showToast('Erro ao processar imagem para PDF.', 'error');
+      }
+  };
+
   return (
     <div className={`app-container ${isFullscreen ? 'fullscreen' : ''}`}>
       
@@ -184,6 +232,7 @@ export default function Home() {
           <button onClick={() => handleZoom(-1)} title="Distanciar">-</button>
           <button onClick={resetZoom} title="Resetar Câmera">[ ]</button>
           <button onClick={handleDownload} className="text-btn">Exportar SVG</button>
+          <button onClick={handleExportPDF} className="text-btn" style={{ marginLeft: '8px', color: '#6366F1', fontWeight: 600, border: '1px solid rgba(99,102,241,0.3)', padding: '4px 12px', borderRadius: '12px' }}>Exportar PDF ✦</button>
         </div>
       </main>
     </div>
