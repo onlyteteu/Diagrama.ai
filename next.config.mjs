@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ['bpmn-auto-layout', 'bpmn-moddle']
-  }
+  transpilePackages: ['bpmn-auto-layout', 'bpmn-moddle', 'moddle', 'moddle-xml']
 };
 export default nextConfig;
