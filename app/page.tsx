@@ -96,27 +96,14 @@ export default function Home() {
 
   const handleDownload = async () => {
       try {
-          const { svg } = await viewerRef.current.saveSVG({ format: true });
-          
-          const customStyle = `<style>
-              .djs-visual > rect { fill: #1E293B !important; stroke: #6366F1 !important; stroke-width: 1.5px !important; rx: 8px !important; }
-              .djs-visual > circle { fill: #1E293B !important; stroke: #4ADE80 !important; stroke-width: 2px !important; }
-              .djs-visual > polygon { fill: #1E293B !important; stroke: #F59E0B !important; stroke-width: 1.5px !important; }
-              .djs-visual > path { stroke: #64748B !important; stroke-width: 1.5px !important; }
-              text.djs-label { fill: #F8FAFC !important; font-family: 'Inter', sans-serif !important; font-size: 13px !important; font-weight: 600 !important; }
-              marker path { fill: #64748B !important; stroke: #64748B !important; }
-              svg { background-color: #0B0E14; }
-          </style>`;
-
-          const styledSvg = svg.replace('>', `>${customStyle}`);
-
-          const blob = new Blob([styledSvg], { type: 'image/svg+xml' });
+          const { svg } = await viewerRef.current.saveSVG();
+          const blob = new Blob([svg], { type: 'image/svg+xml' });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
-          a.download = 'diagrama-premium.svg';
+          a.download = 'diagrama.svg';
           a.click();
-          showToast('Descarregado em SVG perfeitamente.', 'success');
+          showToast('Descarregado em SVG perfeitamente!', 'success');
       } catch (err) {
           showToast('Nenhum diagrama na tela para exportar.', 'error');
       }
