@@ -212,16 +212,12 @@ export default function Home() {
         </form>
 
         <div className="sidebar-footer" style={{ marginTop: 'auto', paddingTop: '32px' }}>
-          <div className="info-card" style={{ background: 'rgba(99,102,241,0.05)', border: '1px solid rgba(99,102,241,0.1)', padding: '16px', borderRadius: '12px', fontSize: '13px', color: '#94a3b8' }}>
+          <div className="info-card" style={{ background: 'rgba(99,102,241,0.05)', border: '1px solid rgba(99,102,241,0.1)', padding: '16px', borderRadius: '12px', fontSize: '13px', color: '#94a3b8', lineHeight: '1.5' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', color: '#F8FAFC', fontWeight: 600 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-              SaaS de Arquitetura Limpa
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              Foco no que importa
             </div>
-            O <strong>Diagrama.ai</strong> preserva seus segredos corporativos encapsulando seu Prompt localmente numa ponte direta com o <i>Large Language Model</i> de sua escolha, e convertendo a matemática nodal 100% no seu navegador usando canvas virtual.
-          </div>
-          
-          <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '11px', color: '#64748B', fontWeight: 500, letterSpacing: '0.5px' }}>
-            ⚡ POWERED BY GEMINI AI & BPMN-JS
+            Esqueça as horas dolorosas perdidas arrastando setas e alinhando painéis matematicamente. Descreva a regra de negócios da sua empresa em linguagem humana, e o Diagrama.ai desenha as engrenagens lógicas para você.
           </div>
         </div>
       </aside>
